@@ -8,19 +8,25 @@ A simple elliptical shadow node for Godot 2D games. Perfect for actor ground sha
 
 ## Why Use Simple Shadow 2D?
 This plugin gives you an easy-to-use customizable eliptical shadow you can use for any actors in your game.
-- Elliptical shadows with width, height, and offset control
-- Stepped gradient layers for stylized falloff
-- Shared texture caching across instances with the same settings
+- Elliptical shadows with width, height, and offset control.
+- Stepped shadow layers for stylized fall-off.
 
 ### Target platforms:
-| Platform | Supported Systems |
-|----------|------------------|
-| **Desktop** | 🪟 Windows • 🐧 Linux • 🍎 MacOS |
-| **Mobile** | 🤖 Android • 📱 iOS |
-| **Others** | 🌐 Web |
+This plugin should work on all platforms.
 
 ## Requirements
 - [Godot 4.x+](https://godotengine.org/).
+
+Check [Releases](https://github.com/shoyguer/simple_shadow_2d/releases) for older versions.
+
+## How to use StatPool
+Check the [Wiki](https://github.com/shoyguer/stat-pool/wiki) for information on how to use this plugin.
+
+Or jump to whatever you need:
+
+#### Wiki
+- [Class Reference](https://github.com/shoyguer/stat-pool/wiki/1.-Class-Reference)
+- [Code Examples](https://github.com/shoyguer/stat-pool/wiki/2.1.-GDScript-Code-Example)
 
 ## Other Plugins
 Check out my other Godot plugins:
