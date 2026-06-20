@@ -6,9 +6,7 @@ A simple elliptical shadow node for Godot 2D games. Perfect for actor ground sha
 
 ## Demo
 
-[![Watch the plugin demo](https://raw.githubusercontent.com/shoyguer/simple_shadow_2d/refs/heads/main/brand/header_image.png)](https://github.com/shoyguer/simple_shadow_2d/blob/main/brand/simple_shadow_2d.mp4)
-
-[Watch plugin demo](https://github.com/shoyguer/simple_shadow_2d/blob/main/brand/simple_shadow_2d.mp4)
+[![Watch the plugin demo](https://raw.githubusercontent.com/shoyguer/simple_shadow_2d/main/brand/header_image.png)](https://raw.githubusercontent.com/shoyguer/simple_shadow_2d/main/brand/simple_shadow_2d.mp4)
 
 ## Why Use Simple Shadow 2D?
 This plugin gives you an easy-to-use customizable eliptical shadow you can use for any actors in your game.
