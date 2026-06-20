@@ -20,13 +20,13 @@ This plugin should work on all platforms.
 Check [Releases](https://github.com/shoyguer/simple_shadow_2d/releases) for older versions.
 
 ## How to use StatPool
-Check the [Wiki](https://github.com/shoyguer/stat-pool/wiki) for information on how to use this plugin.
+Check the [Wiki](https://github.com/shoyguer/simple_shadow_2d/wiki) for information on how to use this plugin.
 
 Or jump to whatever you need:
 
 #### Wiki
-- [Class Reference](https://github.com/shoyguer/stat-pool/wiki/1.-Class-Reference)
-- [Code Examples](https://github.com/shoyguer/stat-pool/wiki/2.1.-GDScript-Code-Example)
+- [Class Reference](https://github.com/shoyguer/simple_shadow_2d/wiki/1.-Class-Reference)
+- [Code Examples](https://github.com/shoyguer/simple_shadow_2d/wiki/2.1.-GDScript-Code-Example)
 
 ## Other Plugins
 Check out my other Godot plugins:
