@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Simple Shadow 2D"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://brand/icon.svg"
+config/icon="uid://dnv5j1qs4gon7"
 
 [editor_plugins]
 

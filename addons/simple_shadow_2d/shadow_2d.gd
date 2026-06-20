@@ -133,17 +133,19 @@ func _get_or_create_texture() -> ImageTexture:
 	var w: int = maxi(MIN_SHADOW_SIZE, int(width))
 	var h: int = maxi(MIN_SHADOW_SIZE, int(height))
 	var image := Image.create(w, h, false, Image.FORMAT_RGBA8)
-	var cx: float = w / 2.0
-	var cy: float = h / 2.0
-	var rx: float = (w / 2.0) - 0.5
-	var ry: float = (h / 2.0) - 0.5
+	var center_x: float = float(w) * 0.5
+	var center_y: float = float(h) * 0.5
+	var radius_x: float = center_x
+	var radius_y: float = center_y
 
 	for py: int in range(h):
+		var sample_y: float = float(py) + 0.5
+		var dy: float = (sample_y - center_y) / radius_y
 		for px: int in range(w):
-			var dx: float = (px - cx) / rx
-			var dy: float = (py - cy) / ry
+			var sample_x: float = float(px) + 0.5
+			var dx: float = (sample_x - center_x) / radius_x
 			var distance: float = dx * dx + dy * dy
-			if distance < 1.0:
+			if distance <= 1.0:
 				var alpha: float = _calculate_shadow_alpha(distance)
 				var final_color := Color(color.r, color.g, color.b, alpha)
 				image.set_pixel(px, py, final_color)
@@ -162,7 +164,8 @@ func _calculate_shadow_alpha(distance: float) -> float:
 		alpha *= _apply_stepped_gradient(distance)
 
 	if smoothing_amount > 0.0:
-		alpha *= clampf(gradient_value / smoothing_amount, 0.0, 1.0)
+		var soft_edge: float = clampf(gradient_value / smoothing_amount, 0.0, 1.0)
+		alpha *= lerpf(1.0, soft_edge, smoothing_amount)
 
 	return alpha
 
@@ -178,7 +181,8 @@ func _apply_stepped_gradient(distance: float) -> float:
 
 	if smoothing_amount > 0.0:
 		var step_fraction: float = fposmod(step_index, 1.0)
-		var smooth_factor: float = clampf(step_fraction / smoothing_amount, 0.0, 1.0)
-		return lerpf(current_step_alpha, next_step_alpha, smooth_factor)
+		var step_blend: float = clampf(step_fraction / smoothing_amount, 0.0, 1.0)
+		step_blend = lerpf(0.0, step_blend, smoothing_amount)
+		return lerpf(current_step_alpha, next_step_alpha, step_blend)
 
 	return current_step_alpha
