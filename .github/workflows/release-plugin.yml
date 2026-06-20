@@ -1,0 +1,89 @@
+name: Release Plugin
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 1.0, 1.1)'
+        required: true
+        type: string
+        default: '1.0'
+      create_release:
+        description: 'Create a GitHub release and attach the zip file'
+        required: false
+        type: boolean
+        default: true
+
+env:
+  PLUGIN_NAME: simple_shadow_2d
+
+jobs:
+  package:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare release folder
+        run: |
+          WRAPPER="${{ env.PLUGIN_NAME }}_${{ github.event.inputs.version }}"
+          mkdir -p "$WRAPPER/addons/${{ env.PLUGIN_NAME }}"
+          cp -R "addons/${{ env.PLUGIN_NAME }}/." "$WRAPPER/addons/${{ env.PLUGIN_NAME }}/"
+          if [ -f "brand/icon.svg" ]; then
+            cp "brand/icon.svg" "$WRAPPER/addons/${{ env.PLUGIN_NAME }}/icon.svg"
+          fi
+          if [ -f LICENSE ]; then
+            cp LICENSE "$WRAPPER/addons/${{ env.PLUGIN_NAME }}/LICENSE"
+          fi
+          echo "wrapper=$WRAPPER" >> "$GITHUB_ENV"
+
+      - name: List release structure
+        run: ls -R "$wrapper"
+
+      - name: Create zip archive
+        run: zip -r "${wrapper}.zip" "$wrapper/"
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Release File
+          path: ${{ env.wrapper }}.zip
+          retention-days: 7
+
+  release:
+    runs-on: ubuntu-22.04
+    needs: package
+    if: ${{ github.event.inputs.create_release }}
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read plugin info
+        id: plugin-info
+        run: |
+          echo "godot_version=$(sed -n '2p' dont_touch.txt)" >> $GITHUB_OUTPUT
+          echo "plugin_name=$(sed -n '3p' dont_touch.txt)" >> $GITHUB_OUTPUT
+
+      - name: Download release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Release File
+          path: ./
+
+      - name: Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ github.event.inputs.version }}" \
+            --title "v${{ github.event.inputs.version }} - Release" \
+            --notes "## ${{ steps.plugin-info.outputs.plugin_name }} v${{ github.event.inputs.version }}
+
+          For Godot ${{ steps.plugin-info.outputs.godot_version }}.x and newer 4.x releases.
+
+          ### Installation
+          1. Download the \`${{ env.PLUGIN_NAME }}_${{ github.event.inputs.version }}.zip\` file below
+          2. Extract it to your Godot project root directory (the zip contains the \`addons\` folder structure)
+          3. Enable **Simple Shadow 2D** under Project Settings > Plugins" \
+            "${{ env.PLUGIN_NAME }}_${{ github.event.inputs.version }}.zip"

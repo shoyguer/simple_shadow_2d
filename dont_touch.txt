@@ -1,0 +1,3 @@
+# Used by GitHub Actions release workflow. Do not edit manually unless you know what you are doing.
+4.3
+Simple Shadow 2D

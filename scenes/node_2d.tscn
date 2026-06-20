@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c14ov6hl0bapm"]
+
+[ext_resource type="Texture2D" uid="uid://o153702o8igb" path="res://icon.svg" id="1_4dvvg"]
+[ext_resource type="Script" uid="uid://bkyn6gsfgjmwm" path="res://addons/simple_shadow_2d/shadow_2d.gd" id="2_rnjyy"]
+
+[node name="Node2D" type="Node2D" unique_id=571461189]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=801374263]
+position = Vector2(500, 250)
+texture = ExtResource("1_4dvvg")
+
+[node name="Shadow2D" type="Node2D" parent="Sprite2D" unique_id=628756883]
+show_behind_parent = true
+texture_filter = 1
+script = ExtResource("2_rnjyy")
+width = 129.23
+height = 128.0
+offset = Vector2(0, 125.64)
+step_falloff = 0.0
+metadata/_custom_type_script = "uid://bkyn6gsfgjmwm"
