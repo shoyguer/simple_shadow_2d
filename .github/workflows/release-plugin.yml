@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Prepare release folder
         run: |
@@ -44,7 +44,7 @@ jobs:
         run: zip -r "${wrapper}.zip" "$wrapper/"
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: Release File
           path: ${{ env.wrapper }}.zip
@@ -58,7 +58,7 @@ jobs:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Read plugin info
         id: plugin-info
@@ -67,7 +67,7 @@ jobs:
           echo "plugin_name=$(sed -n '3p' dont_touch.txt)" >> $GITHUB_OUTPUT
 
       - name: Download release artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: Release File
           path: ./
