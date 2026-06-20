@@ -3,7 +3,8 @@ class_name Shadow2D
 extends Node2D
 ## Node that provides simple 2D eliptical shadow.
 ##
-## Place under a Node2D actor. Tune width, height, offset, and color in the inspector.
+## This node generates a shadow that can be used for any 2D actor, such as
+## characters, objects, player, enemy, etc.
 
 
 #region Properties

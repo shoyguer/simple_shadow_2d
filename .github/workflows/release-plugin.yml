@@ -80,7 +80,7 @@ jobs:
             --title "v${{ github.event.inputs.version }} - Release" \
             --notes "## ${{ steps.plugin-info.outputs.plugin_name }} v${{ github.event.inputs.version }}
 
-          For Godot ${{ steps.plugin-info.outputs.godot_version }}.x and newer 4.x releases.
+          For Godot ${{ steps.plugin-info.outputs.godot_version }}.x or newer version.
 
           ### Installation
           1. Download the \`${{ env.PLUGIN_NAME }}_${{ github.event.inputs.version }}.zip\` file below

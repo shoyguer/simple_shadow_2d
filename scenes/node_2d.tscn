@@ -88,17 +88,17 @@ texture_filter = 1
 position = Vector2(574, 229)
 sprite_frames = SubResource("SpriteFrames_hsdmi")
 autoplay = "default"
-frame = 3
-frame_progress = 0.62399316
+frame_progress = 0.037898164
 
 [node name="Shadow2D" type="Node2D" parent="Sprite2D" unique_id=628756883]
 show_behind_parent = true
 texture_filter = 1
 script = ExtResource("2_rnjyy")
-height = 8.0
+width = 28.7
+height = 10.215
 offset = Vector2(0, 23)
 color = Color(0, 0, 0, 0.5019608)
 shadow_steps = 2
-smoothing_amount = 0.75
-step_falloff = 0.6
+smoothing_amount = 0.34
+step_falloff = 0.42
 metadata/_custom_type_script = "uid://bkyn6gsfgjmwm"
